@@ -1,0 +1,12 @@
+import org.ahivs.dependencies.TestLibs
+
+
+dependencies {
+    testImplementation TestLibs.junit5
+    testRuntimeOnly TestLibs.junit5Engine
+    testImplementation TestLibs.junit5Params
+    testImplementation TestLibs.coroutine
+    testImplementation TestLibs.mockitoCore
+    testImplementation TestLibs.mockitoInline
+    testImplementation TestLibs.Android.arch
+}

@@ -1,0 +1,29 @@
+import org.ahivs.dependencies.*
+
+apply plugin: 'com.android.library'
+apply from: '../scripts/androidlibs.gradle'
+apply from: '../scripts/testlibs.gradle'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation Libs.kotlin
+    implementation Libs.Android.appcompat
+    implementation Libs.Android.material
+    //Dagger
+    implementation Libs.dagger
+    kapt Libs.daggerCompiler
+    implementation Libs.daggerAndroid
+    implementation Libs.daggerAndroidSupport
+    kapt Libs.daggerAndroidProcessor
+
+    implementation Libs.okHttpClient
+    implementation Libs.okHttpLoggingInterceptor
+    api Libs.retrofit
+    implementation Libs.retrofitJsonConverter
+    api Libs.gson
+}
+
+//https://stackoverflow.com/questions/52587491/android-gradle-androidtestapi-testapi-configuration-obsoleted
+configurations {
+    baseTestImplementation.extendsFrom testImplementation
+}

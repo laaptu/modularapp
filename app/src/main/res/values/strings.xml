@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">SampleLoginApp</string>
+    <string name="goto_login">Goto Login</string>
+</resources>

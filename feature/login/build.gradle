@@ -1,0 +1,35 @@
+import org.ahivs.dependencies.*
+
+apply plugin: 'com.android.library'
+apply from: '../../scripts/androidlibs.gradle'
+
+android {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':base')
+    implementation Libs.kotlin
+    implementation Libs.Android.appcompat
+    implementation Libs.Android.material
+
+
+    implementation Libs.Android.constraintLayout
+    implementation Libs.Android.constraintLayoutSolver
+    implementation Libs.Android.androidxActivity
+    implementation Libs.Android.androidxFragment
+
+    //Dagger
+    implementation Libs.dagger
+    kapt Libs.daggerCompiler
+    implementation Libs.daggerAndroid
+    implementation Libs.daggerAndroidSupport
+    kapt Libs.daggerAndroidProcessor
+
+    testRuntimeOnly TestLibs.junit5Engine
+    testImplementation project(path: ':base', configuration: 'baseTestImplementation')
+}
