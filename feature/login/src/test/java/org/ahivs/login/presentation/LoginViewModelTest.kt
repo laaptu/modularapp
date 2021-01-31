@@ -1,13 +1,13 @@
 package org.ahivs.login.presentation
 
 import org.ahivs.base.error.ApiException
+import org.ahivs.base.test.BaseViewModelTest
+import org.ahivs.base.test.observeForTesting
 import org.ahivs.login.R
 import org.ahivs.login.domain.LoginRepository
 import org.ahivs.login.domain.LoginUseCase
 import org.ahivs.login.domain.data.LoggedInUser
 import org.ahivs.login.presentation.data.LoginViewState
-import org.ahivs.login.utils.BaseViewModelTest
-import org.ahivs.login.utils.observeForTesting
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName

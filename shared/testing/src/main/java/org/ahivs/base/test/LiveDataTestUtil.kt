@@ -1,4 +1,4 @@
-package org.ahivs.login.utils
+package org.ahivs.base.test
 
 /*
  * Copyright 2019 Google LLC
@@ -30,9 +30,9 @@ import java.util.concurrent.TimeoutException
  * `InstantTaskExecutorRule` or a similar mechanism to execute tasks synchronously.
  */
 fun <T> LiveData<T>.getOrAwaitValue(
-        time: Long = 2,
-        timeUnit: TimeUnit = TimeUnit.SECONDS,
-        afterObserve: () -> Unit = {}
+    time: Long = 2,
+    timeUnit: TimeUnit = TimeUnit.SECONDS,
+    afterObserve: () -> Unit = {}
 ): T {
     var data: T? = null
     val latch = CountDownLatch(1)

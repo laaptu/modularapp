@@ -66,7 +66,7 @@ object Libs {
             "androidx.fragment:fragment-ktx:${Version.Android.androidxFragment}"
         const val lifecycleExtension =
             "androidx.lifecycle:lifecycle-extensions:${Version.Android.lifecycleExtension}"
-
+        const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Version.Android.lifecycleExtension}"
     }
 }
 

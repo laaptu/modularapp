@@ -1,4 +1,4 @@
-package org.ahivs.login.utils
+package org.ahivs.base.test
 
 import kotlinx.coroutines.test.TestCoroutineScope
 import kotlinx.coroutines.test.runBlockingTest

@@ -1,0 +1,14 @@
+import org.ahivs.dependencies.*
+
+apply plugin: 'com.android.library'
+apply from: '../../scripts/androidlibs.gradle'
+apply from: '../../scripts/testlibs.gradle'
+
+dependencies {
+
+    implementation Libs.kotlin
+    implementation Libs.Android.liveData
+    implementation TestLibs.junit5
+    implementation TestLibs.coroutine
+    implementation TestLibs.Android.arch
+}

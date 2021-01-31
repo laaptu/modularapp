@@ -31,5 +31,6 @@ dependencies {
     kapt Libs.daggerAndroidProcessor
 
     testRuntimeOnly TestLibs.junit5Engine
+    testImplementation project(':testing')
     testImplementation project(path: ':base', configuration: 'baseTestImplementation')
 }

@@ -1,6 +1,7 @@
+include ':testing'
 include ':featureLogin'
 include ':base'
 include ':app'
-rootProject.name = "SampleLoginApp"
 project(':featureLogin').projectDir = new File(rootDir, 'feature/login')
 project(':base').projectDir = new File(rootDir, 'shared/base')
+project(':testing').projectDir = new File(rootDir, 'shared/testing')
