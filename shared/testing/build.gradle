@@ -2,13 +2,15 @@ import org.ahivs.dependencies.*
 
 apply plugin: 'com.android.library'
 apply from: '../../scripts/androidlibs.gradle'
-apply from: '../../scripts/testlibs.gradle'
 
 dependencies {
 
     implementation Libs.kotlin
     implementation Libs.Android.liveData
-    implementation TestLibs.junit5
+    api TestLibs.junit5
+    api TestLibs.junit5Params
+    api TestLibs.mockitoCore
+    api TestLibs.mockitoInline
     implementation TestLibs.coroutine
     implementation TestLibs.Android.arch
 }

@@ -32,5 +32,5 @@ dependencies {
 
     testRuntimeOnly TestLibs.junit5Engine
     testImplementation project(':testing')
-    testImplementation project(path: ':base', configuration: 'baseTestImplementation')
+    //testImplementation project(path: ':base', configuration: 'baseTestImplementation')
 }
