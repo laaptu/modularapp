@@ -179,7 +179,7 @@ class LoginViewModelTest : BaseViewModelTest() {
         private fun getInvalidPasswords(): Stream<String> = Stream.of("", "123", "12345")
 
         @JvmStatic
-        private fun getValidEmails(): Stream<String> = Stream.of("abc@c.om", "test@test.group", "a@b.com")
+        private fun getValidEmails(): Stream<String> = Stream.of("abc@c.om", "test@test.com", "a@b.com")
 
         @JvmStatic
         private fun getValidPasswords(): Stream<String> = Stream.of("abcdef", "123456", "zxy123")
@@ -187,12 +187,12 @@ class LoginViewModelTest : BaseViewModelTest() {
         @JvmStatic
         private fun getValidEmailAndPassword(): Stream<Arguments> =
                 Stream.of(
-                        Arguments.of("test@test.group", "123456"),
+                        Arguments.of("test@test.com", "123456"),
                         Arguments.of("abc@c.com", "zxy1244"),
                         Arguments.of("a@b.com", "abcdef")
                 )
 
-        const val validEmail = "test@test.group"
+        const val validEmail = "test@test.com"
         const val validPwd = "123456"
         val validLoggedInUser = LoggedInUser(email = validEmail,
                 displayName = "",
