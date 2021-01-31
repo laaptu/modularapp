@@ -1,5 +1,6 @@
 package org.ahivs.login.presentation
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,18 +14,30 @@ import org.ahivs.base.error.ApiException
 import org.ahivs.login.R
 import javax.inject.Inject
 
-class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase, val loginViewState: LoginViewState) : ViewModel() {
+class LoginViewModel @Inject constructor(
+    private val loginUseCase: LoginUseCase,
+    val loginViewState: LoginViewState
+) : ViewModel() {
 
-    val loginResult = MutableLiveData<LoginResult>()
-    //TODO: use backing field for LiveData so that setting anything on the LiveData is restricted
-    val btnEnabledState = MutableLiveData<Boolean>()
-    val progressState = MutableLiveData<Boolean>()
-    val pwdErrorState = MutableLiveData<LoginViewState.ErrorState>()
-    val unameErrorState = MutableLiveData<LoginViewState.ErrorState>()
+    private val _loginResult = MutableLiveData<LoginResult>()
+    val loginResult: LiveData<LoginResult> = _loginResult
+
+    private val _btnEnabledState = MutableLiveData<Boolean>()
+    val btnEnabledState: LiveData<Boolean> = _btnEnabledState
+
+    private val _progressState = MutableLiveData<Boolean>()
+    val progressState: LiveData<Boolean> = _progressState
+
+    private val _pwdErrorState = MutableLiveData<LoginViewState.ErrorState>()
+    val pwdErrorState: LiveData<LoginViewState.ErrorState> = _pwdErrorState
+
+    private val _unameErrorState = MutableLiveData<LoginViewState.ErrorState>()
+    val unameErrorState: LiveData<LoginViewState.ErrorState> = _unameErrorState
 
     fun initLogin(username: String, password: String) {
         if (!loginViewState.inputValues.isValid ||
-                loginViewState.viewState == LoginViewState.ViewState.PROGRESS)
+            loginViewState.viewState == LoginViewState.ViewState.PROGRESS
+        )
             return
         login(username, password)
     }
@@ -34,9 +47,13 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase,
             showProgress(true)
             try {
                 val loggedInUserView = loginUseCase.invoke(username, password)
-                loginResult.value = LoginResult(success = LoggedInUserView(displayName = loggedInUserView.email))
+                _loginResult.value =
+                    LoginResult(success = LoggedInUserView(displayName = loggedInUserView.email))
             } catch (apiException: ApiException) {
-                loginResult.value = LoginResult(error = R.string.login_failed, errorMsg = apiException.apiError?.message)
+                _loginResult.value = LoginResult(
+                    error = R.string.login_failed,
+                    errorMsg = apiException.apiError?.message
+                )
             } finally {
                 showProgress(false)
             }
@@ -44,8 +61,8 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase,
     }
 
     private fun showProgress(show: Boolean) {
-        progressState.value = show
-        btnEnabledState.value = !show
+        _progressState.value = show
+        _btnEnabledState.value = !show
     }
 
     fun inputDataChangedForUname(username: String) {
@@ -57,7 +74,7 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase,
             setValidInput(false)
             errorState.error = R.string.invalid_username
         }
-        unameErrorState.value = errorState
+        _unameErrorState.value = errorState
     }
 
     fun inputDataChangeForPwd(pwd: String) {
@@ -69,14 +86,17 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase,
             setValidInput(false)
             errorState.error = R.string.invalid_password
         }
-        pwdErrorState.value = errorState
+        _pwdErrorState.value = errorState
     }
 
     private fun setValidInput(isValid: Boolean) {
         loginViewState.inputValues.isValid = isValid
-        btnEnabledState.value = isValid
+        _btnEnabledState.value = isValid
     }
 
-    private fun isUserNameValid(username: String?): Boolean = username != null && EMAIL_ADDRESS.matcher(username).matches()
-    private fun isPasswordValid(password: String?): Boolean = password != null && password.length > 5
+    private fun isUserNameValid(username: String?): Boolean =
+        username != null && EMAIL_ADDRESS.matcher(username).matches()
+
+    private fun isPasswordValid(password: String?): Boolean =
+        password != null && password.length > 5
 }
