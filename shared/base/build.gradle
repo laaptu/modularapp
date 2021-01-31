@@ -1,8 +1,8 @@
 import org.ahivs.dependencies.*
 
 apply plugin: 'com.android.library'
-apply from: '../scripts/androidlibs.gradle'
-apply from: '../scripts/testlibs.gradle'
+apply from: '../../scripts/androidlibs.gradle'
+apply from: '../../scripts/testlibs.gradle'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
